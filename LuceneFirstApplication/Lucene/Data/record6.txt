@@ -1,0 +1,11 @@
+6,Rohan,1,A,10-mar-1990
+
+At the heart of Lucene is an Index. This class usually gets its data from a filesystem directory that contains a certain set of files that follow a certain structure, but it doesn't absolutely have to be a directory.
+
+You pump data into the Index, then do searches on the Index to get results out. To build the Index, you use an IndexWriter object. To run a search on the Index you use an IndexSearcher object.
+
+The search itself is a Query object, which you pass into IndexSearcher.search(). IndexSearcher.search() returns a Hits object, which contains a Vector of Document objects.
+
+Document objects are stored in the Index, but they have to be put into the Index at some point, and that's your job. You have to select what data to enter in, and convert them into Documents. You read in each data file (or database entry, or whatever), instantiate a Document for it, break down the data into chunks and store the chunks in the Document as Field objects (a name/value pair). When you're done building a Document, you write it to the Index using the IndexWriter.
+
+Queries can be quite complicated, so Lucene includes a tool to help generate Query objects, called a QueryParser. The QueryParser takes a query string, much like what you'd put into an Internet search engine, and generates a Query object.
